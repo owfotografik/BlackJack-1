@@ -1,4 +1,6 @@
 (function () {
+	var dealButton = document.getElementById('deal');
+
 
 	let deck = [
 		'2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', '10H', 'JH', 'QH', 'KH', 'AH',
@@ -9,6 +11,61 @@
 
 	let dealer = [];
 	let player = [];
+
+	dealButton.addEventListener('click', function() {
+		deck = shuffle(deck);
+
+		console.log(deck);
+
+		player.push(deck.shift());
+		dealer.push(deck.shift());
+		player.push(deck.shift());
+		dealer.push(deck.shift());
+		console.log('player: ', player);
+
+		var playerCards = document.getElementById('playerCards');
+
+		showCardOnTable(player[0], playerCards);
+		showCardOnTable(player[1], playerCards);
+		
+	})
+
+	function showCardOnTable(card, cardsDiv, isFaceUp) {
+
+		var cardImage = document.createElement('img');
+	
+		cardImage.classList.add('card');
+
+		if (isFaceUp) {
+			cardImage.src = 'img/' + card + '.png';
+		}
+		else {
+			cardImage.src = 'img/back.png';
+			
+		cardsDiv.appendChild(cardImage);
+	}
+
+function getCardValue(card) {
+	
+	switch(card[0]) {
+	case '2': 
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+	case '8':
+	case '9':
+	return parseInt(card[0]);
+	case '1':
+	case 'J':
+	case 'Q':
+	case 'K':
+		return 10;
+	default:
+		return 11;
+	}
+}
 
 	function shuffle(array) {
 
