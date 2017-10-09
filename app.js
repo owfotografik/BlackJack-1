@@ -153,6 +153,7 @@ alert("Want to Hit Again? " + "You only have " + getHandValue(player));
     console.log(getHandValue(dealer));
     
     
+    
     //show Winner Function
     function showWinner() {
         if (getHandValue(dealer) === 21 && getHandValue(player) !== 21) {
@@ -183,15 +184,18 @@ alert("Want to Hit Again? " + "You only have " + getHandValue(player));
 }
     //Play Again Button
 
-    function playAgain() {
-    }
-    playAgain();
+
 
         var playAgainButton = document.getElementById('playagain');
         playAgainButton.addEventListener('click', function (){
             document.getElementById("playerCards").innerHTML = " ";
             document.getElementById("dealerCards").innerHTML = " ";
-            
+            document.getElementById("hit").className = "shown";
+            document.getElementById("stand").className = "shown";
+            deck = [];
+            dealer.length = 0;
+            player.length = 0;
+            deal();
     })
     
     
