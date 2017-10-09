@@ -190,6 +190,7 @@ alert("Want to Hit Again? " + "You only have " + getHandValue(player));
         playAgainButton.addEventListener('click', function (){
             document.getElementById("playerCards").innerHTML = " ";
             document.getElementById("dealerCards").innerHTML = " ";
+            document.getElementById("playagain").style.visibility = "hidden";
             document.getElementById("hit").className = "shown";
             document.getElementById("stand").className = "shown";
             deck = [];
