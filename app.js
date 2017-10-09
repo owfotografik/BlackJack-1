@@ -8,13 +8,14 @@
 		let player = [];
 	
 		
-		function deal() {
+		
 		var dealButton = document.getElementById('deal');
 		dealButton.addEventListener('click', function (){
 		document.getElementById("deal").style.visibility = "hidden";
 		document.getElementById("hit").className = "shown";
 		document.getElementById("stand").className = "shown";
-		
+	})
+		function deal() {
 			deck = shuffle();
 			
 			console.log(deck);
@@ -57,7 +58,7 @@
 					else {
 						showCardOnTable(dealer[1], dealerCards, false);
 				}
-		})
+		
 		}
 		deal();
 
@@ -188,7 +189,7 @@
 		playAgainButton.addEventListener('click', function (){
 			document.getElementById("playerCards").innerHTML = " ";
 			document.getElementById("dealerCards").innerHTML = " ";
-			deal();
+		
 	})
 	
 	
