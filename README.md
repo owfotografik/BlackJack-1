@@ -39,7 +39,7 @@ A deck array containing 52 cards is provided.
 
 A dealer hand array and player hand array is provided.
 
-A shuffle function is provided. 
+A shuffle function is provided.
 
 After the shuffle, dealing should consist of taking cards from the front of the shuffled deck array and putting them in the dealer/player hand array.
 
