@@ -81,6 +81,7 @@
 		//Hit Button
 
 		var hitButton = document.getElementById('hit');
+
         hitButton.addEventListener('click', function () {
             
 			player.push(deck.shift());
@@ -91,25 +92,29 @@
 			console.log(deck);
 			
 			if (getHandValue(player) === 21) {
-                return showWinner();
-                document.getElementById("playagain").className = "shown";
-                document.getElementById("hit").className = "hidden";
-                document.getElementById("stand").className = "hidden";
+				document.getElementById("playagain").className = "shown";
+				document.getElementById("hit").className = "hidden";
+				document.getElementById("stand").className = "hidden";
+				 return showWinner();
+               
             }
-            if (getHandValue(player) > 21) {
-                return showWinner();
-                document.getElementById("playagain").className = "shown";
-                document.getElementById("hit").className = "hidden";
-                document.getElementById("stand").className = "hidden";
-            }
+            else if (getHandValue(player) > 21) {
+				document.getElementById("playagain").className = "shown";
+				document.getElementById("hit").className = "hidden";
+				document.getElementById("stand").className = "hidden";
+				return showWinner();
+			}
+			else if (getHandValue(dealer) === 21) {
+				document.getElementById("playagain").className = "shown";
+				document.getElementById("hit").className = "hidden";
+				document.getElementById("stand").className = "hidden";
+				return showWinner();
+			}
             else if(getHandValue(player) < 21) {
                 alert("Want to Hit Again? " + "You only have " + getHandValue(player));
         }
-        })
-
-            
-        
-		
+		})
+		         
 		//Stand Button
 	
 		var standButton = document.getElementById('stand');
@@ -118,9 +123,10 @@
 			document.getElementById("hit").className = "hidden";
 			document.getElementById("stand").className = "hidden";
 
-			while (getHandValue(dealer) < 16) {
+			while (getHandValue(dealer) < 16 && getHandValue(dealer) < 22) {
 				dealer.push(deck.shift());
 			}
+			document.getElementById("playagain").className = "shown";
 			return showWinner();
 		})
 		
@@ -172,12 +178,18 @@
 		else {
 			alert("Dealer Wins! With a Score of " + getHandValue(dealer));
 		}
-	
+
 }
 
 }
 	//Play Again Button
 
+		var playAgainButton = document.getElementById('playagain');
+		playAgainButton.addEventListener('click', function (){
+			document.getElementById("playerCards").innerHTML = " ";
+			document.getElementById("dealerCards").innerHTML = " ";
+			deal();
+	})
 	
 	
 	// This function gets the value of a single card
