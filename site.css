@@ -13,3 +13,8 @@
 .row {
     padding: 3%;
 }
+
+body {
+    margin: 60px;
+    background-image: "bjbg.png"
+}

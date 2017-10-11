@@ -2,13 +2,23 @@
 
 (function () {
     
+    //need to put all variables at the top
+
+    var playerCards = document.getElementById('playerCards');
+    var dealerCards = document.getElementById('dealerCards');
+   
+    var dealButton = document.getElementById('deal');
+    var playAgainButton = document.getElementById('playagain');
+    var hitButton = document.getElementById('hit');
+    var standButton = document.getElementById('stand');
+
         let deck = [];
         let dealer = [];
         let player = [];
+        
+        let dealerPoints = 0;
+        let playerPoints = 0;
     
-        
-        
-        var dealButton = document.getElementById('deal');
         dealButton.addEventListener('click', function (){ deal();
         document.getElementById("deal").style.visibility = "hidden";
         document.getElementById("hit").className = "shown";
@@ -16,51 +26,27 @@
     })
         
     function deal() {
-     deck = shuffle();
-            
-            console.log(deck);
+        deck = shuffle();
+        console.log(deck);
     
             player.push(deck.shift());
             dealer.push(deck.shift());
             player.push(deck.shift());
             dealer.push(deck.shift());
-    
-            console.log(deck);
-            
+
+        
+  
     // show the player and dealer cards on the table - the player goes first so the dealer cards are not shown yet.
-    
-            var playerCards = document.getElementById('playerCards');
     
             showCardOnTable(player[0], playerCards, true);
             showCardOnTable(player[1], playerCards, true);
-            console.log('player: ', player);
-            console.log(getHandValue(player));
-    
-            var dealerCards = document.getElementById('dealerCards');
-        
-                showCardOnTable(dealer[0], dealerCards, true);
-        
-                console.log('dealer: ', dealer);
-                console.log(getHandValue(dealer));
-    
-                    if (getHandValue(dealer) === 21 && getHandValue(player) !== 21) {
-                        showCardOnTable(dealer[1], dealerCards, true);
-                        return showWinner();
-                    }
-                    else if(getHandValue(dealer) === 21 && getHandValue(player) === 21) {
-                        showCardOnTable(dealer[1], dealerCards, true);
-                        return showWinner();
-                    }
-                    else if(getHandValue(dealer) < 21 && getHandValue(player) === 21) {
-                        showCardOnTable(dealer[1], dealerCards, true);
-                        return showWinner();
-                    }
-                    else {
-                        showCardOnTable(dealer[1], dealerCards, false);
-                }
+            showCardOnTable(dealer[0], dealerCards, true);
+            showCardOnTable(dealer[1], dealerCards, false);
+
+            dealerPoints = getHandValue(dealer);
+            playerPoints = getHandValue(player);
         
         }
-        
 
         //This function shows the front of the card if the card is showing isFaceUp
     
@@ -69,6 +55,7 @@
                     var cardImage = document.createElement('img');
             
                     cardImage.classList.add('card');
+                    cardImage.id = card;
             
                     if (isFaceUp) {
                         cardImage.src = 'img/' + card + '.png';
@@ -81,124 +68,113 @@
     
         //Hit Button
 
-        var hitButton = document.getElementById('hit');
+            hitButton.addEventListener('click', function () {
 
-hitButton.addEventListener('click', function () {
+                //add a card and then show faceup the last card in the array
             player.push(deck.shift());
             var newCard = player[player.length -1];
             showCardOnTable(newCard, playerCards, true);
+            ///end show card
 
-console.log('player: ', player);
-            console.log(deck);
-            
-            if (getHandValue(player) === 21) {
-                document.getElementById("playagain").className = "shown";
-                document.getElementById("hit").className = "hidden";
-                document.getElementById("stand").className = "hidden";
-                 return showWinner();
-}
-else if (getHandValue(player) > 21) {
-                document.getElementById("playagain").className = "shown";
-                document.getElementById("hit").className = "hidden";
-                document.getElementById("stand").className = "hidden";
-                return showWinner();
+            playerPoints = getHandValue(player);
+            console.log(playerPoints);
+            if (playerPoints > 21) {
+            showWinner();
             }
-            else if (getHandValue(dealer) === 21) {
-                document.getElementById("playagain").className = "shown";
-                document.getElementById("hit").className = "hidden";
-                document.getElementById("stand").className = "hidden";
-                return showWinner();
-            }
-else if(getHandValue(player) < 21) {
-alert("Want to Hit Again? " + "You only have " + getHandValue(player));
-}
+            //need to now show the dealer card faceup
+            var downCard = document.getElementById(dealer[1]);
+            downCard.src = 'img/' + dealer[1] + '.png';
         })
         
         //Stand Button
     
-        var standButton = document.getElementById('stand');
-        
-        standButton.addEventListener('click', function () {
+            standButton.addEventListener('click', function () {
             document.getElementById("hit").className = "hidden";
             document.getElementById("stand").className = "hidden";
 
-            while (getHandValue(dealer) < 16 && getHandValue(dealer) < 22) {
+            while (dealerPoints < 17) {
                 dealer.push(deck.shift());
+                var newCard = dealer[dealer.length -1];
+                showCardOnTable(newCard, dealerCards, true);
+                dealerPoints = getHandValue(dealer);
             }
             document.getElementById("playagain").className = "shown";
             return showWinner();
+          
         })
+    
+    //get value for hand
+    
+        function getHandValue(hand) {
+            var total = 0;
+            var nonAces = [];
+            var aces = [];
+            
+            nonAces = hand.filter(function (card) {
+            return card[0] !== "A";
+
+            });
+            aces = hand.filter(function (card) {
+            return card[0] === "A";
         
-    
-    //get value for player hand
-    
-    function getHandValue(player) {
-        var sum = 0
-        for (var i = 0; i < player.length; i++) {
-         sum += getCardValue(player[i]);
+            });
+            
+            nonAces.forEach(function (card) {
+            total += getCardValue(card);
+            
+            });
+            
+            aces.forEach(function (card) {
+            total += getCardValue(card);
+                if (total > 21) {
+                    total -= 10;
+}
+            });
+            return total;
         }
-        return sum;
-    }
-    console.log(getHandValue(player));
-    
-    //get value for dealer hand
-    
-    function getHandValue(dealer) {
-        var sum = 0
-        for (var i = 0; i < dealer.length; i++) {
-         sum += getCardValue(dealer[i]);
-        }
-        return sum;
-    }
-    console.log(getHandValue(dealer));
-    
-    
     
     //show Winner Function
+
     function showWinner() {
-        if (getHandValue(dealer) === 21 && getHandValue(player) !== 21) {
-            alert("Dealer Wins! With a Score of " + getHandValue(dealer));
+        if (dealerPoints === 21 && playerPoints !== 21) {
+            alert("Dealer Wins! With a Score of " + dealerPoints);
         }
-        else if(getHandValue(dealer) === 21 && getHandValue(player) === 21) {
+        else if(dealerPoints < 21 && playerPoints === 21) {
+            alert("Player Wins! With a Score of " + playerPoints);
+        }
+        else if(dealerPoints > 21 && playerPoints < 21) {
+            alert("Dealer is Bust and Player Wins With a Score of " + playerPoints);
+        }
+        else if (playerPoints > 21 && dealerPoints < 21) {
+                alert("Player is Bust and Delaer Wins With a Score of " + dealerPoints);
+        }
+        else if (dealerPoints === 21 || playerPoints === 21) {
             alert("Its A Push and No one Wins ");
         }
-        else if(getHandValue(dealer) < 21 && getHandValue(player) === 21) {
-            alert("Player Wins! With a Score of " + getHandValue(player));
+        else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints > dealerPoints))) {
+            alert("Player Wins With a Score of " + playerPoints);
         }
-        else if(getHandValue(dealer) > 21 && getHandValue(player) < 21) {
-            alert("Dealer is Bust and Player Wins With a Score of " + getHandValue(player));
+        else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints > dealerPoints))) {
+            alert("Dealer Wins! With a Score of " + dealerPoints);
         }
-        else if (getHandValue(player) > 21 && getHandValue(dealer) < 21) {
-            alert("Player is Bust and Delaer Wins With a Score of " + getHandValue(dealer));
+        document.getElementById("playagain").className = "shown";
+        document.getElementById("hit").className = "hidden";
+        document.getElementById("stand").className = "hidden";
     }
-    else if (getHandValue(player) < 21 && getHandValue(dealer) < 21) {
-        if (getHandValue(player) > getHandValue(dealer)) {
-         alert("Player Wins With a Score of " + getHandValue(player));
-        }
-        else {
-            alert("Dealer Wins! With a Score of " + getHandValue(dealer));
-        }
-
-}
-
-}
     //Play Again Button
 
-
-
-        var playAgainButton = document.getElementById('playagain');
-        playAgainButton.addEventListener('click', function (){
+            playAgainButton.addEventListener('click', function (){
             document.getElementById("playerCards").innerHTML = " ";
             document.getElementById("dealerCards").innerHTML = " ";
-            document.getElementById("playagain").style.visibility = "hidden";
             document.getElementById("hit").className = "shown";
             document.getElementById("stand").className = "shown";
+
             deck = [];
             dealer.length = 0;
             player.length = 0;
             deal();
+            document.getElementById("playagain").className = "hidden";
     })
-    
     
     // This function gets the value of a single card
     
@@ -253,5 +229,6 @@ alert("Want to Hit Again? " + "You only have " + getHandValue(player));
             
                     return array;
                 }
-    
+
+                
     })();
