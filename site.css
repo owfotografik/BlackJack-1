@@ -22,3 +22,14 @@ body {
 h1 {
     color: white;
 }
+
+#dealerCards {
+    height: 250px;
+}
+
+#winner {
+    height: 100px;
+}
+h3 {
+    color: white;
+}

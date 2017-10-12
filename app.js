@@ -146,33 +146,33 @@
         var isWinner = true;
         if (dealerPoints === 21 && playerPoints !== 21) {
             isWinner = false;
-            alert("Dealer Wins! With a Score of " + dealerPoints);
+            document.getElementById("winner").innerHTML = ("Dealer Wins! With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" + playerBet);
         }
         else if (dealerPoints < 21 && playerPoints === 21) {
-            alert("Player Wins! With a Score of " + playerPoints);
+            document.getElementById("winner").innerHTML = ("Player Wins! With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
         }
         else if (dealerPoints > 21 && playerPoints < 21) {
-            alert("Dealer is Bust and Player Wins With a Score of " + playerPoints);
+            document.getElementById("winner").innerHTML = ("Dealer is Bust and Player Wins With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
         }
         else if (playerPoints > 21 && dealerPoints < 21) {
             isWinner = false;
-            alert("Player is Bust and Delaer Wins With a Score of " + dealerPoints);
+            document.getElementById("winner").innerHTML = ("Player is Bust and Delaer Wins With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" +  playerBet);
         }
         else if (dealerPoints === 21 || playerPoints === 21) {
-            alert("Its A Push and No one Wins ");
+            document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
         else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints > dealerPoints))) {
-            alert("Player Wins With a Score of " + playerPoints);
+            document.getElementById("winner").innerHTML = ("Player Wins With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
         }
         else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints < dealerPoints))) {
             isWinner = false;
-            alert("Dealer Wins! With a Score of " + dealerPoints);
+            document.getElementById("winner").innerHTML = ("Dealer Wins! With a Score of " + dealerPoints + "<br>" + "Player loses " + "$" + playerBet);
         }
         if (isWinner) {
             playerBank += playerBet * 2;
             document.getElementById("playerBankDiv").innerHTML = playerBank;
         }
-
+        document.getElementById("winner").classList.remove("hidden");
         document.getElementById("playagain").classList.remove("hidden");
         document.getElementById("hit").classList.add("hidden");
         document.getElementById("stand").classList.add("hidden");
