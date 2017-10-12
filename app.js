@@ -38,7 +38,7 @@
         dealer.push(deck.shift());
         playerBet = playerBetInput.valueAsNumber;
         playerBank -= playerBet;
-        document.getElementById("playerBankDiv").innerHTML = playerBank;
+        document.getElementById("playerBankDiv").innerHTML = "$" + playerBank;
 
         // show the player and dealer cards on the table - the player goes first so the dealer cards are not shown yet.
 
@@ -146,27 +146,37 @@
         var isWinner = true;
         if (dealerPoints === 21 && playerPoints !== 21) {
             isWinner = false;
-            document.getElementById("winner").innerHTML = ("Dealer Wins! With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" + playerBet);
+            document.getElementById("winner").classList.add("alert-danger");
+            document.getElementById("winner").innerHTML = ("Dealer Wins!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" + playerBet);
         }
         else if (dealerPoints < 21 && playerPoints === 21) {
-            document.getElementById("winner").innerHTML = ("Player Wins! With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
+            document.getElementById("winner").classList.add("alert-success");
+            document.getElementById("winner").innerHTML = ("Player Wins!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
         }
         else if (dealerPoints > 21 && playerPoints < 21) {
-            document.getElementById("winner").innerHTML = ("Dealer is Bust and Player Wins With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
+            document.getElementById("winner").classList.add("alert-success");
+            document.getElementById("winner").innerHTML = ("Dealer is Bust" + "<br>" + "Player Wins With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
         }
         else if (playerPoints > 21 && dealerPoints < 21) {
             isWinner = false;
-            document.getElementById("winner").innerHTML = ("Player is Bust and Delaer Wins With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" +  playerBet);
+            document.getElementById("winner").classList.add("alert-danger");
+            document.getElementById("winner").innerHTML = ("Player is Bust!" + "<br>" + "Dealer Wins With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" +  playerBet);
         }
         else if (dealerPoints === 21 || playerPoints === 21) {
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
+        else if (dealerPoints === playerPoints) {
+            document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
+        }
         else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints > dealerPoints))) {
-            document.getElementById("winner").innerHTML = ("Player Wins With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
+        
+            document.getElementById("winner").classList.add("alert-success");
+            document.getElementById("winner").innerHTML = ("Player Wins!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
         }
         else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints < dealerPoints))) {
             isWinner = false;
-            document.getElementById("winner").innerHTML = ("Dealer Wins! With a Score of " + dealerPoints + "<br>" + "Player loses " + "$" + playerBet);
+            document.getElementById("winner").classList.add("alert-danger");
+            document.getElementById("winner").innerHTML = ("Dealer Wins!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses " + "$" + playerBet);
         }
         if (isWinner) {
             playerBank += playerBet * 2;
@@ -191,6 +201,9 @@
         player.length = 0;
         deal();
         document.getElementById("playagain").classList.add("hidden");
+        document.getElementById("winner").classList.remove("alert-danger");
+        document.getElementById("winner").classList.remove("alert-success");
+        document.getElementById("winner").innerHTML = " ";
     })
 
     // This function gets the value of a single card
