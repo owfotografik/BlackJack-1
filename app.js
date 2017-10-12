@@ -38,7 +38,7 @@
         dealer.push(deck.shift());
         playerBet = playerBetInput.valueAsNumber;
         playerBank -= playerBet;
-        document.getElementById("playerBankDiv").innerHTML = "$" + playerBank;
+        document.getElementById("playerBankDiv").innerHTML = "\$" + playerBank;
 
 
 
@@ -51,14 +51,15 @@
 
         dealerPoints = getHandValue(dealer);
         playerPoints = getHandValue(player);
-
+        
+        console.log(dealerPoints);
+        console.log(playerPoints);
         //Blackjack with First Deal
 
         if (dealerPoints === 21 || playerPoints === 21) {
             showWinner();
         }
-        console.log(dealerPoints);
-        console.log(playerPoints);
+      
 
     }
 
@@ -117,7 +118,7 @@
             dealerPoints = getHandValue(dealer);
         }
         document.getElementById("playagain").className = "shown";
-        return showWinner();
+        showWinner();
 
     })
 
@@ -173,7 +174,7 @@
             document.getElementById("winner").classList.add("alert-danger");
             document.getElementById("winner").innerHTML = ("Player is Bust!" + "<br>" + "Dealer Wins With a Score of " + dealerPoints + "<br>" + "Player loses " + "\$" + playerBet);
         }
-        else if (dealerPoints === 21 || playerPoints === 21) {
+        else if (dealerPoints === 21 & playerPoints === 21) {
             isWinner = false;
             document.getElementById("winner").classList.add("alert-success");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
