@@ -38,7 +38,7 @@
         dealer.push(deck.shift());
         playerBet = playerBetInput.valueAsNumber;
         playerBank -= playerBet;
-        document.getElementById("playerBankDiv").innerHTML = "\$" + playerBank;
+        document.getElementById("playerBankDiv").innerHTML = "$" + playerBank;
 
 
 
@@ -58,6 +58,8 @@
         //Blackjack with First Deal
 
         if (dealerPoints === 21 || playerPoints === 21) {
+            var downCard = document.getElementById(dealer[1]);
+            downCard.src = 'img/' + dealer[1] + '.png';
             blackjack();
         }
 
@@ -88,7 +90,7 @@
         document.getElementById("playagain").classList.remove("hidden");
 
     }
-
+//end Blackjack case
 
     //This function shows the front of the card if the card is showing isFaceUp
 
