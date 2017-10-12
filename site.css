@@ -1,20 +1,24 @@
 .card {
-    height: 150px;
-}
-
-.shown {
-    visibility: visible;
-}
-
-.hiddenButton {
-    visibility: hidden;
+    height: 200px;
+    padding: 1%;
 }
 
 .row {
-    padding: 3%;
+    
+    padding: 1%;
+    
 }
 
 body {
-    margin: 60px;
-    background-image: "bjbg.png"
+    background: url("bjbg.png");
+    background-size: cover;
+}
+
+#playerBankDiv {
+    height: 200px;
+    padding: 5%
+}
+
+h1 {
+    color: white;
 }
