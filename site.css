@@ -29,9 +29,14 @@ h1 {
 }
 
 #winner {
-    height: 150px;
+    height: 200px;
     font-size: 2em
 }
 h3 {
     color: white;
+}
+
+.btn-new {
+    height: 60;
+    font-size: 35px;
 }

@@ -39,7 +39,30 @@
         playerBet = playerBetInput.valueAsNumber;
         playerBank -= playerBet;
         document.getElementById("playerBankDiv").innerHTML = "$" + playerBank;
-
+/*
+        if (dealerPoints === 21 && playerPoints !== 21) {
+            isWinner = false;
+            document.getElementById("winner").classList.add("alert-danger");
+            document.getElementById("winner").innerHTML = ("Dealer Wins with BLACKJACK!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" + playerBet);
+            document.getElementById("winner").classList.remove("hidden");
+            document.getElementById("playagain").classList.remove("hidden");
+            document.getElementById("hit").classList.add("hidden");
+            document.getElementById("stand").classList.add("hidden");
+        }
+        else if (playerPoints === 21 && dealerPoints !== 21) {
+            isWinner = true;
+            document.getElementById("winner").classList.add("alert-success");
+            document.getElementById("winner").innerHTML = ("Player Wins with BLACKJACK!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" + playerBet);
+            document.getElementById("winner").classList.remove("hidden");
+            document.getElementById("playagain").classList.remove("hidden");
+            document.getElementById("hit").classList.add("hidden");
+            document.getElementById("stand").classList.add("hidden");
+        }
+        if (isWinner) {
+            playerBank += playerBet * 2;
+            document.getElementById("playerBankDiv").innerHTML = playerBank;
+        }
+*/
         // show the player and dealer cards on the table - the player goes first so the dealer cards are not shown yet.
 
         showCardOnTable(player[0], playerCards, true);
@@ -163,14 +186,16 @@
             document.getElementById("winner").innerHTML = ("Player is Bust!" + "<br>" + "Dealer Wins With a Score of " + dealerPoints + "<br>" + "Player loses "  + "$" +  playerBet);
         }
         else if (dealerPoints === 21 || playerPoints === 21) {
+            document.getElementById("winner").classList.add("alert-success");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
         else if (dealerPoints === playerPoints) {
+            document.getElementById("winner").classList.add("alert-warning");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
         else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints > dealerPoints))) {
         
-            document.getElementById("winner").classList.add("alert-success");
+            document.getElementById("winner").classList.add("alert-warning");
             document.getElementById("winner").innerHTML = ("Player Wins!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins "  + "$" +  playerBet);
         }
         else if (playerPoints < 21 && dealerPoints < 21 && ((playerPoints < dealerPoints))) {
