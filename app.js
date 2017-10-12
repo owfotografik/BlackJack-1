@@ -51,15 +51,41 @@
 
         dealerPoints = getHandValue(dealer);
         playerPoints = getHandValue(player);
-        
+
         console.log(dealerPoints);
         console.log(playerPoints);
+       
         //Blackjack with First Deal
 
         if (dealerPoints === 21 || playerPoints === 21) {
-            showWinner();
+            blackjack();
         }
-      
+
+    }
+
+    function blackjack() {
+        var isWinner = true;
+        if (dealerPoints === 21 && playerPoints < 21) {
+            isWinner = false;
+            document.getElementById("winner").classList.add("alert-danger");
+            document.getElementById("winner").innerHTML = ("Dealer Wins! BLACKJACK!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses " + "\$" + playerBet);
+        }
+        else if (dealerPoints < 21 && playerPoints === 21) {
+            document.getElementById("winner").classList.add("alert-success");
+            document.getElementById("winner").innerHTML = ("Player Wins BLACKJACK!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins " + "\$" + playerBet);
+        }
+        else if (dealerPoints === 21 && playerPoints === 21) {
+            isWinner = false;
+            document.getElementById("winner").classList.add("alert-warning");
+            document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
+        }
+
+        if (isWinner) {
+            playerBank += playerBet * 4;
+            document.getElementById("playerBankDiv").innerHTML = playerBank;
+        }
+        document.getElementById("winner").classList.remove("hidden");
+        document.getElementById("playagain").classList.remove("hidden");
 
     }
 
@@ -174,9 +200,9 @@
             document.getElementById("winner").classList.add("alert-danger");
             document.getElementById("winner").innerHTML = ("Player is Bust!" + "<br>" + "Dealer Wins With a Score of " + dealerPoints + "<br>" + "Player loses " + "\$" + playerBet);
         }
-        else if (dealerPoints === 21 & playerPoints === 21) {
+        else if (dealerPoints === 21 && playerPoints === 21) {
             isWinner = false;
-            document.getElementById("winner").classList.add("alert-success");
+            document.getElementById("winner").classList.add("alert-warning");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
         else if (dealerPoints === playerPoints && (dealerPoints < 21 && playerPoints) < 21) {
