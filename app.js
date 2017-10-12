@@ -189,7 +189,7 @@
             document.getElementById("winner").classList.add("alert-success");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
-        else if (dealerPoints === playerPoints) {
+        else if (dealerPoints === playerPoints && dealerPoints < 21 && playerPoints < 21) {
             document.getElementById("winner").classList.add("alert-warning");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
