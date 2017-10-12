@@ -24,8 +24,7 @@
     dealButton.addEventListener('click', function () {
         deal();
         document.getElementById("deal").style.visibility = "hidden";
-        document.getElementById("hit").classList.remove("hidden");
-        document.getElementById("stand").classList.remove("hidden");
+    
     })
 
     function deal() {
@@ -38,9 +37,7 @@
         dealer.push(deck.shift());
         playerBet = playerBetInput.valueAsNumber;
         playerBank -= playerBet;
-        document.getElementById("playerBankDiv").innerHTML = "$" + playerBank;
-
-
+        document.getElementById("playerBankDiv").innerHTML = "\$" + playerBank;
 
         // show the player and dealer cards on the table - the player goes first so the dealer cards are not shown yet.
 
@@ -61,6 +58,10 @@
             var downCard = document.getElementById(dealer[1]);
             downCard.src = 'img/' + dealer[1] + '.png';
             blackjack();
+        }
+        else {
+            document.getElementById("hit").classList.remove("hidden");
+            document.getElementById("stand").classList.remove("hidden");
         }
 
     }

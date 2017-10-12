@@ -15,20 +15,29 @@
 			<div class="col-md-12 text-center text-white">
 				<p>
 					<h1>Let's Play Blackjack!</h1>
-					<button id="deal" class="btn btn-warning btn-new">Play</button>
 
-					<button id="hit" class="btn btn-warning btn-new hidden">Hit</button>
-
-					<button id="stand" class="btn btn-warning btn-new hidden">Stand</button>
-
-					<button id="playagain" class="btn btn-warning btn-new hidden">Play Again</button>
 				</p>
 			</div>
 		</div>
 
 		<div class="row text-center">
+			<div class="col-md-3 text-center">
+					<h1>Deck</h1>
+					<div id="deck">
+					
+					<button id="deal" class="btn btn-warning btn-new">Play</button>
+					<br>
 
-			<div class="col-md-9 text-center">
+					<button id="hit" class="btn btn-warning btn-new hidden">Hit</button>
+					<br>
+
+					<button id="stand" class="btn btn-warning btn-new hidden">Stand</button>
+					<br>
+
+					<button id="playagain" class="btn btn-warning btn-new hidden">Play Again</button>
+				</div>
+			</div>
+			<div class="col-md-6 text-center">
 				<div class="row">
 					<div id="dealerCards">
 						<h1>Dealer Cards</h1>
@@ -42,28 +51,28 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-				
-						<h1>Player Bank</h1>
-						<div id="playerBankDiv" class="bg-success jumbotron align-middle">
-							<p>Play starts with $100</p>
-							
-							<p>Are you feeling lucky?</p>
-						</div>
-						<h3>Player Bet</h3>
-						<div class="input-group">
-							<span class="input-group-addon">$</span>
-							<input id="playerBetInput" type="number" class="form-control" value="5">
-						</div>
-				
-				<div class="row"></div>
-			
-				<div id='winner' class='text-center align-middle hidden'></div>
-				
-			
+
+					<h1>Player Bank</h1>
+					<div id="playerBankDiv" class="bg-success jumbotron align-middle">
+						<p>Play starts with $100</p>
+
+						<p>Are you feeling lucky?</p>
+					</div>
+					<h3>Player Bet</h3>
+					<div class="input-group">
+						<span class="input-group-addon">$</span>
+						<input id="playerBetInput" type="number" class="form-control" value="5">
+					</div>
+
+					<div class="row"></div>
+
+					<div id='winner' class='text-center align-middle hidden'></div>
+
+
 				</div>
 			</div>
-			</div>
 		</div>
+	</div>
 	</div>
 	</div>
 

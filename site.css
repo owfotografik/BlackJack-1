@@ -39,4 +39,12 @@ h3 {
 .btn-new {
     height: 60;
     font-size: 35px;
+    margin: 5%;
+}
+
+.deck {
+
+    background-image: url("backDeck.png");
+    height: 200px;
+    padding: 1%;
 }
