@@ -69,7 +69,7 @@
             document.getElementById("stand").classList.add("hidden");
         }
         if (playerPoints === 21) {
-            playerBet *= 4;
+            playerBet = playerBet + (playerBet * 2);
             playerBank += playerBet;
             document.getElementById("winner").classList.remove("hidden");
             document.getElementById("playerBankDiv").innerHTML = playerBank;
