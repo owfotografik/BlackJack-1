@@ -72,28 +72,23 @@
     }
 
     function blackjack() {
-        var isWinner = true;
+   
         if (dealerPoints === 21) {
-            isWinner = false;
             document.getElementById("winner").classList.add("alert-danger");
             document.getElementById("winner").innerHTML = ("Dealer Wins! BLACKJACK!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses " + "$" + playerBet);
         }
         else if (playerPoints === 21) {
+            playerBank = playerBank + (playerBet * 4);
+            document.getElementById("winner").classList.remove("hidden");
+            document.getElementById("playerBankDiv").innerHTML = playerBank;
             document.getElementById("winner").classList.add("alert-success");
             document.getElementById("winner").innerHTML = ("Player Wins BLACKJACK!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins " + "$" + playerBet);
         }
         else if (dealerPoints === 21 && playerPoints === 21) {
-            isWinner = false;
             document.getElementById("winner").classList.add("alert-warning");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
-        console.log(isWinner)
-        if (isWinner) {
-            playerBank = playerBank + (playerBet * 4);
-            document.getElementById("winner").classList.remove("hidden");
-            document.getElementById("playerBankDiv").innerHTML = playerBank;
-            
-        }
+      
         
 
     }
