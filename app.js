@@ -24,8 +24,8 @@
     dealButton.addEventListener('click', function () {
         deal();
         document.getElementById("deal").classList.add("hidden");
-     
-    
+
+
     })
 
     function deal() {
@@ -41,7 +41,7 @@
         dealer.push(deck.shift());
         player.push(deck.shift());
         dealer.push(deck.shift());
-        //dealer = ["AH","JD"]
+        //player = ["AH","JD"]
         playerBet = playerBetInput.valueAsNumber;
         playerBank -= playerBet;
         document.getElementById("playerBankDiv").innerHTML = "$" + playerBank;
@@ -58,7 +58,7 @@
 
         console.log(dealerPoints);
         console.log(playerPoints);
-       
+
         //Blackjack with First Deal
 
         if (dealerPoints === 21 || playerPoints === 21) {
@@ -67,21 +67,23 @@
             document.getElementById("playagain").classList.remove("hidden");
             document.getElementById("hit").classList.add("hidden");
             document.getElementById("stand").classList.add("hidden");
-            blackjack();
         }
-
+        if (playerPoints === 21) {
+            playerBet *= 4;
+            playerBank += playerBet;
+            document.getElementById("winner").classList.remove("hidden");
+            document.getElementById("playerBankDiv").innerHTML = playerBank;
+        }
+        blackjack();
     }
 
     function blackjack() {
-   
+
         if (dealerPoints === 21) {
             document.getElementById("winner").classList.add("alert-danger");
             document.getElementById("winner").innerHTML = ("Dealer Wins! BLACKJACK!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses " + "$" + playerBet);
         }
         else if (playerPoints === 21) {
-            playerBank = playerBank + (playerBet * 4);
-            document.getElementById("winner").classList.remove("hidden");
-            document.getElementById("playerBankDiv").innerHTML = playerBank;
             document.getElementById("winner").classList.add("alert-success");
             document.getElementById("winner").innerHTML = ("Player Wins BLACKJACK!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins " + "$" + playerBet);
         }
@@ -91,7 +93,7 @@
         }
 
     }
-//end Blackjack case
+    //end Blackjack case
 
     //This function shows the front of the card if the card is showing isFaceUp
 
@@ -246,7 +248,7 @@
         dealer.length = 0;
         player.length = 0;
         deal();
-        
+
     })
 
     // This function gets the value of a single card

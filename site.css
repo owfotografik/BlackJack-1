@@ -46,3 +46,8 @@ h3 {
     height: 200px;
     padding: 1%;
 }
+
+#playerBetInput {
+    font-size: 1em;
+    height: 200 px;
+}
