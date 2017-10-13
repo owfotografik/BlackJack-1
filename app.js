@@ -73,12 +73,12 @@
 
     function blackjack() {
         var isWinner = true;
-        if (dealerPoints === 21 && playerPoints < 21) {
+        if (dealerPoints === 21) {
             isWinner = false;
             document.getElementById("winner").classList.add("alert-danger");
             document.getElementById("winner").innerHTML = ("Dealer Wins! BLACKJACK!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses " + "$" + playerBet);
         }
-        else if (dealerPoints < 21 && playerPoints === 21) {
+        else if (playerPoints === 21) {
             document.getElementById("winner").classList.add("alert-success");
             document.getElementById("winner").innerHTML = ("Player Wins BLACKJACK!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins " + "$" + playerBet);
         }
@@ -89,11 +89,12 @@
         }
         console.log(isWinner)
         if (isWinner) {
-            playerBank += playerBet * 4;
+            playerBank = PlayerBank + (playerBet * 4);
+            document.getElementById("winner").classList.remove("hidden");
             document.getElementById("playerBankDiv").innerHTML = playerBank;
+            document.getElementById("playagain").classList.remove("hidden");
         }
-        document.getElementById("winner").classList.remove("hidden");
-        document.getElementById("playagain").classList.remove("hidden");
+        
 
     }
 //end Blackjack case
@@ -151,7 +152,7 @@
             showCardOnTable(newCard, dealerCards, true);
             dealerPoints = getHandValue(dealer);
         }
-        document.getElementById("playagain").className = "shown";
+        document.getElementById("playagain").classList.remove("hidden");
         showWinner();
 
     })
@@ -243,16 +244,17 @@
     //Play Again Button
 
     playAgainButton.addEventListener('click', function () {
-        document.getElementById("playerCards").innerHTML = " ";
-        document.getElementById("dealerCards").innerHTML = " ";
+        document.getElementById("playagain").classList.add("hidden");
         document.getElementById("hit").classList.remove("hidden");
         document.getElementById("stand").classList.remove("hidden");
+        document.getElementById("playerCards").innerHTML = " ";
+        document.getElementById("dealerCards").innerHTML = " ";
 
         deck = [];
         dealer.length = 0;
         player.length = 0;
         deal();
-        document.getElementById("playagain").classList.add("hidden");
+        
     })
 
     // This function gets the value of a single card
