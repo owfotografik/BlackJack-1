@@ -24,12 +24,13 @@
     dealButton.addEventListener('click', function () {
         deal();
         document.getElementById("deal").classList.add("hidden");
-        document.getElementById("hit").classList.remove("hidden");
-        document.getElementById("stand").classList.remove("hidden");
+     
     
     })
 
     function deal() {
+        document.getElementById("hit").classList.remove("hidden");
+        document.getElementById("stand").classList.remove("hidden");
         document.getElementById("winner").classList.remove("alert-danger");
         document.getElementById("winner").classList.remove("alert-success");
         document.getElementById("winner").innerHTML = " ";
@@ -88,8 +89,6 @@
             document.getElementById("winner").classList.add("alert-warning");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
-      
-        
 
     }
 //end Blackjack case
@@ -240,8 +239,6 @@
 
     playAgainButton.addEventListener('click', function () {
         document.getElementById("playagain").classList.add("hidden");
-        document.getElementById("hit").classList.remove("hidden");
-        document.getElementById("stand").classList.remove("hidden");
         document.getElementById("playerCards").innerHTML = " ";
         document.getElementById("dealerCards").innerHTML = " ";
 
