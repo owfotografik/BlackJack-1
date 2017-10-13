@@ -89,7 +89,7 @@
         }
         console.log(isWinner)
         if (isWinner) {
-            playerBank = PlayerBank + (playerBet * 4);
+            playerBank = playerBank + (playerBet * 4);
             document.getElementById("winner").classList.remove("hidden");
             document.getElementById("playerBankDiv").innerHTML = playerBank;
             document.getElementById("playagain").classList.remove("hidden");
