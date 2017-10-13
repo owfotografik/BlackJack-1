@@ -43,8 +43,7 @@ h3 {
 }
 
 .deck {
-
-    background-image: url("backDeck.png");
+    background-image: "backDeck.png";
     height: 200px;
     padding: 1%;
 }

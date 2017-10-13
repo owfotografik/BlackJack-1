@@ -28,6 +28,9 @@
     })
 
     function deal() {
+        document.getElementById("winner").classList.remove("alert-danger");
+        document.getElementById("winner").classList.remove("alert-success");
+        document.getElementById("winner").innerHTML = " ";
         deck = shuffle();
         console.log(deck);
 
@@ -35,9 +38,10 @@
         dealer.push(deck.shift());
         player.push(deck.shift());
         dealer.push(deck.shift());
+        //dealer = ["AH","JD"]
         playerBet = playerBetInput.valueAsNumber;
         playerBank -= playerBet;
-        document.getElementById("playerBankDiv").innerHTML = "\$" + playerBank;
+        document.getElementById("playerBankDiv").innerHTML = "$" + playerBank;
 
         // show the player and dealer cards on the table - the player goes first so the dealer cards are not shown yet.
 
@@ -60,6 +64,7 @@
             blackjack();
         }
         else {
+            console.log("her we go")
             document.getElementById("hit").classList.remove("hidden");
             document.getElementById("stand").classList.remove("hidden");
         }
@@ -71,18 +76,18 @@
         if (dealerPoints === 21 && playerPoints < 21) {
             isWinner = false;
             document.getElementById("winner").classList.add("alert-danger");
-            document.getElementById("winner").innerHTML = ("Dealer Wins! BLACKJACK!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses " + "\$" + playerBet);
+            document.getElementById("winner").innerHTML = ("Dealer Wins! BLACKJACK!" + "<br>" + "With a Score of " + dealerPoints + "<br>" + "Player loses " + "$" + playerBet);
         }
         else if (dealerPoints < 21 && playerPoints === 21) {
             document.getElementById("winner").classList.add("alert-success");
-            document.getElementById("winner").innerHTML = ("Player Wins BLACKJACK!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins " + "\$" + playerBet);
+            document.getElementById("winner").innerHTML = ("Player Wins BLACKJACK!" + "<br>" + "With a Score of " + playerPoints + "<br>" + "Player wins " + "$" + playerBet);
         }
         else if (dealerPoints === 21 && playerPoints === 21) {
             isWinner = false;
             document.getElementById("winner").classList.add("alert-warning");
             document.getElementById("winner").innerHTML = ("Its A Push and No one Wins ");
         }
-
+        console.log(isWinner)
         if (isWinner) {
             playerBank += playerBet * 4;
             document.getElementById("playerBankDiv").innerHTML = playerBank;
@@ -248,9 +253,6 @@
         player.length = 0;
         deal();
         document.getElementById("playagain").classList.add("hidden");
-        document.getElementById("winner").classList.remove("alert-danger");
-        document.getElementById("winner").classList.remove("alert-success");
-        document.getElementById("winner").innerHTML = " ";
     })
 
     // This function gets the value of a single card
