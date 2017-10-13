@@ -61,6 +61,7 @@
         if (dealerPoints === 21 || playerPoints === 21) {
             var downCard = document.getElementById(dealer[1]);
             downCard.src = 'img/' + dealer[1] + '.png';
+            document.getElementById("playagain").classList.remove("hidden");
             blackjack();
         }
         else {
@@ -92,7 +93,7 @@
             playerBank = PlayerBank + (playerBet * 4);
             document.getElementById("winner").classList.remove("hidden");
             document.getElementById("playerBankDiv").innerHTML = playerBank;
-            document.getElementById("playagain").classList.remove("hidden");
+
         }
         
 
