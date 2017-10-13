@@ -23,7 +23,9 @@
 
     dealButton.addEventListener('click', function () {
         deal();
-        document.getElementById("deal").style.visibility = "hidden";
+        document.getElementById("deal").classList.add("hidden");
+        document.getElementById("hit").classList.remove("hidden");
+        document.getElementById("stand").classList.remove("hidden");
     
     })
 
@@ -61,12 +63,10 @@
         if (dealerPoints === 21 || playerPoints === 21) {
             var downCard = document.getElementById(dealer[1]);
             downCard.src = 'img/' + dealer[1] + '.png';
+            document.getElementById("playagain").classList.remove("hidden");
+            document.getElementById("hit").classList.add("hidden");
+            document.getElementById("stand").classList.add("hidden");
             blackjack();
-        }
-        else {
-            console.log("her we go")
-            document.getElementById("hit").classList.remove("hidden");
-            document.getElementById("stand").classList.remove("hidden");
         }
 
     }
@@ -92,7 +92,7 @@
             playerBank = playerBank + (playerBet * 4);
             document.getElementById("winner").classList.remove("hidden");
             document.getElementById("playerBankDiv").innerHTML = playerBank;
-            document.getElementById("playagain").classList.remove("hidden");
+            
         }
         
 
